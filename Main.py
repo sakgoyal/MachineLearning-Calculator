@@ -36,12 +36,6 @@ num_classes = 13
 epochs = 20
 class_names = ['0','1','2','3','4','5','6','7','8','9', 'add', 'sub', 'mult']
 
-datasetpath = 'Dataset/_Final/'
-
-ds_train      = image_dataset_from_directory(datasetpath, validation_split=0.3, image_size=(28, 28), label_mode='categorical', class_names=class_names, color_mode='grayscale', batch_size=batch_size, seed=134, subset='training')
-ds_validation = image_dataset_from_directory(datasetpath, validation_split=0.3, image_size=(28, 28), label_mode='categorical', class_names=class_names, color_mode='grayscale', batch_size=batch_size, seed=134, subset='validation')
-ds_test       = image_dataset_from_directory(datasetpath, validation_split=0.99, image_size=(28, 28), label_mode='categorical', class_names=class_names, color_mode='grayscale', batch_size=batch_size, shuffle=False, subset='validation')
-
 def base_cnn():
     model=Sequential()
     model.add(Conv2D(filters=64, kernel_size = (3,3), activation="relu", input_shape=(28,28,1)))
@@ -68,13 +62,9 @@ def base_cnn():
     return model
 
 
-pathtomodel = 'best_model'
+pathtomodel = 'best_model/'
 model = base_cnn()
 model.load_weights(pathtomodel)
-
-
-
-
 
 # Main GUI Application
 from keras.preprocessing.image import img_to_array
